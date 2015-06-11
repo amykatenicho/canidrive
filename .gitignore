@@ -7,3 +7,4 @@
 /.vs/CanIDrive/v14/.suo
 /src/CanIDrive/CanIDrive.xproj.user
 /.vs/**
+/src/CanIDrive/wwwroot/bin/**
