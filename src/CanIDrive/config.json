@@ -1,0 +1,10 @@
+{
+  "AppSettings": {
+    "SiteTitle": "CanIDrive"
+  },
+  "Data": {
+    "DefaultConnection": {
+      "ConnectionString": "Server=(localdb)\\mssqllocaldb;Database=aspnet5-CanIDrive-1ab30595-3a0b-41e6-beae-613c5cb3d4e1;Trusted_Connection=True;MultipleActiveResultSets=true"
+    }
+  }
+}
