@@ -47,6 +47,8 @@ function stopRecording() {
             audioSource.stop();
         }
         audioRecorder.stop();
+        $("#micOff").hide();
+        $("#micOn").show();
         stopWebSocket();
         $("#SpokenText").text($('#messages').text());
         $("#SpokenTextForm").submit();

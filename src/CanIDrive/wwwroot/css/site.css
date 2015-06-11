@@ -32,3 +32,17 @@ textarea {
         z-index: 10 !important;
     }
 }
+
+#micOn {
+    width: 150px;
+    height: 150px;
+    background-image: url(http://webaudiodemos.appspot.com/AudioRecorder/img/mic128.png);
+    background-repeat: no-repeat;    
+}
+
+#micOff {
+    width: 150px;
+    height: 150px;
+    background-image: url(https://cdn0.iconfinder.com/data/icons/inficons-muticollection/123/mic-off-512.png);
+    background-repeat: no-repeat;    
+}
