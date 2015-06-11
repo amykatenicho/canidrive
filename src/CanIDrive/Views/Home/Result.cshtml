@@ -33,11 +33,20 @@
               //      '#000000' // Fill color
               //  },
               limitMax: 'true',   // If true, the pointer will not go past the end of the gauge
-              colorStart: '#CF5374',   // Colors
-              colorStop: '#DA0B0B',    // just experiment with them
-              strokeColor: '#87E060',   // to see which ones work best for you
+              @if (Model.Drunk)
+              {
+                  colorStart: '#CF5374',   // Colors
+                  colorStop: '#DA0B0B',    // just experiment with them
+                  strokeColor: '#87E060',   // to see which ones work best for you
+                }
+              else
+              {
+                  colorStart: '#87E060',   // Colors
+                  colorStop: '#87E060',    // just experiment with them
+                  strokeColor: '#CF5374',   // to see which ones work best for you
+              }
               generateGradient:
-                true
+              true
             };
         var target = document.getElementById('gaugecanvas'); // your canvas element
         var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
