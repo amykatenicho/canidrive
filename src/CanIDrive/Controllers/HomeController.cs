@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
+using CanIDrive.Models.Home;
 
 namespace CanIDrive.Controllers
 {
@@ -25,9 +26,20 @@ namespace CanIDrive.Controllers
         [HttpGet("result")]
         public IActionResult Result()
         {
-            int index = new Random().Next(2);
-            string[] viewnames = new[] { "Result-Sober", "Result-Drunk" };
-            return View(viewnames[index]);
+            var model = GetResult();
+            return View(model);
+        }
+
+        private ResultModel GetResult() // simulate making an assessment :-)
+        {
+            bool drunk = new Random().Next(2) == 0;
+            double confidence = (new Random().NextDouble());
+
+            return new ResultModel
+            {
+                Drunk = drunk,
+                Confidence = confidence
+            };
         }
 
         public IActionResult Error()
