@@ -6,7 +6,7 @@
 
 function startDemo() {
     resetSound();
-    stopRecording();
+    //stopRecording();
     textDisplay = "";
 }
 

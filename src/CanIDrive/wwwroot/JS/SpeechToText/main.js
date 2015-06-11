@@ -48,11 +48,8 @@ function stopRecording() {
         }
         audioRecorder.stop();
         stopWebSocket();
-        $("#SpokenText").val = displayText;
-        $("#SpokenTextForm").submit(function (event) {
-            console.log('SpokenTextForm was submitted');
-            event.preventDefault();
-        });
+        $("#SpokenText").text($('#messages').text());
+        $("#SpokenTextForm").submit();
     }
 }
 
