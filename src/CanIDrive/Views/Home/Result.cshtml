@@ -6,24 +6,20 @@
 <h3>@ViewBag.Message</h3>
 <div id="results">
     <canvas width=440 height=140 id="gaugecanvas"></canvas>
-    <div id="confidenceresults">@Model.Confidence</div>
     @if (Model.Drunk)
     {
-        <p>Are you kidding me? You should not be driving!! your confidence level: @Model.Confidence</p>
+        <h3>Are you kidding me? You should not be driving!!</h3>
     }
     else
     {
-        <p>Well done - you seem sober!! your confidence level: @Model.Confidence</p>
+        <h3>Well done - you seem sober!!</h3>
     }
+    <p>Confidence level: @Model.Confidence</p>
 </div>
 @section scripts
 {
     <script src="~/js/gauge.min.js"></script>
     <script>
-        var drunk = @Model.Drunk;
-        var colorStart = drunk ? '#CF5374' : '#87E060';   // Colors
-        var colorStop =  drunk ? '#DA0B0B' :'#87E060';    // just experiment with them
-        var strokeColor = drunk ? '#87E060' :'#CF5374';   // to see which ones work best for you
         var opts =
             {
                 lines: 100, // The number of lines to draw
@@ -37,12 +33,9 @@
                 //      '#000000' // Fill color
                 //  },
                 limitMax: 'true',   // If true, the pointer will not go past the end of the gauge
-                colorStart: '#CF5374',   // Colors
-                colorStop: '#DA0B0B',    // just experiment with them
-                strokeColor: '#87E060',   // to see which ones work best for you
-                @*//colorStart: colorStart,
-                //colorStop: colorStop,
-                //strokeColor: strokeColor,*@
+                colorStart: '#bfccff',   // Colors
+                colorStop: '#bfccff',    // just experiment with them
+                strokeColor: '#bfccff',   // to see which ones work best for you
                 generateGradient: true
             };
         var target = document.getElementById('gaugecanvas'); // your canvas element
