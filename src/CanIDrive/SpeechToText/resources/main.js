@@ -36,7 +36,12 @@ function stopRecording() {
             audioSource.stop();
         }
         audioRecorder.stop();
-        stopWebSocket();      
+        stopWebSocket();
+		$("#SpokenText").val = displayText;
+		$("#SpokenTextForm").submit(function( event ) {
+			console.log('SpokenTextForm was submitted');
+			event.preventDefault();
+		});		
     }
 }
 
