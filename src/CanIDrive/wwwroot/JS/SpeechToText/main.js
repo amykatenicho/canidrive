@@ -17,16 +17,27 @@ function gotAudioStream(stream) {
     this.isRecording = true;
 }
 
-function startRecording() {
-    if (!navigator.getUserMedia) {
-        navigator.getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+function toggleRecording() {
+    if (this.isRecording) {
+        stopRecording();
+    } else {
+        startRecording();
     }
+}
+function startRecording() {
+    if (!this.isRecording) {
+        this.isRecording = true;
 
-    navigator.getUserMedia({
-        "audio": true,
-    }, gotAudioStream.bind(this), function (e) {
-        window.alert('User rejected Microphone access.');
-    });
+        if (!navigator.getUserMedia) {
+            navigator.getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+        }
+
+        navigator.getUserMedia({
+            "audio": true,
+        }, gotAudioStream.bind(this), function (e) {
+            window.alert('User rejected Microphone access.');
+        });
+    }
 }
 
 function stopRecording() {
@@ -36,7 +47,7 @@ function stopRecording() {
             audioSource.stop();
         }
         audioRecorder.stop();
-        stopWebSocket();      
+        stopWebSocket();
     }
 }
 
