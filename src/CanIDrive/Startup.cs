@@ -52,6 +52,8 @@ namespace CanIDrive
             // Add Application settings to the services container.
             services.Configure<AppSettings>(Configuration.GetSubKey("AppSettings"));
 
+            services.AddInstance<IConfiguration>(Configuration);
+
             services.AddApplicationInsightsTelemetry(Configuration);
 
             // Add EF services to the services container.
