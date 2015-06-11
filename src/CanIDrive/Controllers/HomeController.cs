@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.ApplicationInsights;
 using Microsoft.AspNet.Mvc;
+using CanIDrive.Models.Home;
 
 namespace CanIDrive.Controllers
 {
@@ -32,11 +33,25 @@ namespace CanIDrive.Controllers
         [HttpGet("result")]
         public IActionResult Result()
         {
-            int index = new Random().Next(2);
-            string[] viewnames = new[] { "Result-Sober", "Result-Drunk" };
+            var model = GetResult();
+
+            string resultEventName = model.Drunk ? "Result-drunk" : "Result-sober";
             _telemetryClient.TrackEvent("TestCompleted");
-            _telemetryClient.TrackEvent(viewnames[index]);
-            return View(viewnames[index]);
+            _telemetryClient.TrackEvent(resultEventName);
+
+            return View(model);
+        }
+
+        private ResultModel GetResult() // simulate making an assessment :-)
+        {
+            bool drunk = new Random().Next(2) == 0;
+            double confidence = (new Random().NextDouble());
+
+            return new ResultModel
+            {
+                Drunk = drunk,
+                Confidence = confidence
+            };
         }
 
         public IActionResult Error()
