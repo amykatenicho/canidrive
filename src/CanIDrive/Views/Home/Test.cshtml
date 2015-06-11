@@ -7,10 +7,17 @@
 
 
 <div>
-    TODO
-    <ul>
-        <li>Capture audio!!</li>
-    </ul>
+  
+<div>
+    <script src="./JS/SpeechToText/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="./JS/SpeechToText/recorder.js" type="text/javascript"></script>
+    <script src="./JS/SpeechToText/main.js" type="text/javascript"></script>
+    <script src="./JS/SpeechToText/ws.js" type="text/javascript"></script>
+    <script src= "./JS/SpeechToText/index.js" type="text/javascript"></script>
+
+    <button onclick='startRecording()'>Start</button>
+    <button onclick='stopRecording()'>Stop</button>
+    <div class="textarea" id="messages"></div>
 </div>
 <div>Say: peter piper....</div>
 <form asp-controller="Home" asp-action="Test" method="post">
