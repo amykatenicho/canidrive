@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Create Profile";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<div>
+    TODO
+    <ul>
+        <li>Drop down for country?</li>
+        <li>Handle post-back</li>
+        <li>Add AAD auth to capture user?</li>
+    </ul>
+</div>
+<form action="/" method="post">
+    <div>
+        <label>Location</label>
+        <input type="text" value="" />
+    </div>
+    <input type="submit" value="Go" />
+</form>
+<a asp-controller="Home" asp-action="Test">Skip next</a>(for testing)

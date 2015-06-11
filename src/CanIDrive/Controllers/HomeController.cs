@@ -12,6 +12,21 @@ namespace CanIDrive.Controllers
         {
             return View();
         }
+        [HttpGet("create-profile")]
+        public IActionResult CreateProfile()
+        {
+            return View();
+        }
+        [HttpGet("test")]
+        public IActionResult Test()
+        {
+            return View();
+        }
+        [HttpGet("result")]
+        public IActionResult Result()
+        {
+            return View();
+        }
 
         public IActionResult About()
         {
