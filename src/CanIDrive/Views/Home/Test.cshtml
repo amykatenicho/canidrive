@@ -1,4 +1,5 @@
-﻿@{
+﻿@model CanIDrive.Models.Home.TestModel
+@{
     ViewBag.Title = "Test";
 }
 <h2>@ViewBag.Title.</h2>
@@ -12,10 +13,10 @@
     </ul>
 </div>
 <div>Say: peter piper....</div>
-<form action="/" method="post">
+<form asp-controller="Home" asp-action="Test" method="post">
     <div>
         <label>Enter text</label>
-        <textarea cols="10" rows="4">blah</textarea>
+        <textarea asp-for="SpokenText" cols="10" rows="4">blah</textarea>
     </div>
     <input type="submit" value="Go" />
 </form>
