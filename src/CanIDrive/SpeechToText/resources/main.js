@@ -25,7 +25,7 @@ function startRecording() {
     navigator.getUserMedia({
         "audio": true,
     }, gotAudioStream.bind(this), function (e) {
-        window.alert('User rejected Microphone access. FUCK.......');
+        window.alert('User rejected Microphone access.');
     });
 }
 
@@ -36,8 +36,7 @@ function stopRecording() {
             audioSource.stop();
         }
         audioRecorder.stop();
-        stopWebSocket();
-        
+        stopWebSocket();      
     }
 }
 
