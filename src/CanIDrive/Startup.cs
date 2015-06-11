@@ -38,8 +38,9 @@ namespace CanIDrive
                 // This reads the configuration keys from the secret store.
                 // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
                 configuration.AddUserSecrets();
+                configuration.AddApplicationInsightsSettings(developerMode: true);
             }
-            configuration.AddEnvironmentVariables();
+            configuration.AddEnvironmentVariables("APPSETTING_");
             Configuration = configuration;
         }
 
@@ -50,6 +51,8 @@ namespace CanIDrive
         {
             // Add Application settings to the services container.
             services.Configure<AppSettings>(Configuration.GetSubKey("AppSettings"));
+
+            services.AddApplicationInsightsTelemetry(Configuration);
 
             // Add EF services to the services container.
             services.AddEntityFramework()
@@ -93,6 +96,8 @@ namespace CanIDrive
             // Add the console logger.
             loggerfactory.AddConsole(minLevel: LogLevel.Warning);
 
+            app.UseApplicationInsightsRequestTelemetry();
+
             // Add the following to the request pipeline only in development environment.
             if (env.IsEnvironment("Development"))
             {
@@ -131,6 +136,8 @@ namespace CanIDrive
                 // Uncomment the following line to add a route for porting Web API 2 controllers.
                 // routes.MapWebApiRoute("DefaultApi", "api/{controller}/{id?}");
             });
+
+            app.UseApplicationInsightsExceptionTelemetry();
         }
     }
 }
