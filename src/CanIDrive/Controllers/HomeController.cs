@@ -25,7 +25,9 @@ namespace CanIDrive.Controllers
         [HttpGet("result")]
         public IActionResult Result()
         {
-            return View();
+            int index = new Random().Next(2);
+            string[] viewnames = new[] { "Result-Sober", "Result-Drunk" };
+            return View(viewnames[index]);
         }
 
         public IActionResult Error()
