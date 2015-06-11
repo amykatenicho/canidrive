@@ -16,37 +16,34 @@
         <p>Well done - you seem sober!! your confidence level: @Model.Confidence</p>
     }
 </div>
-@section scripts 
+@section scripts
 {
     <script src="~/js/gauge.min.js"></script>
     <script>
+        var drunk = @Model.Drunk;
+        var colorStart = drunk ? '#CF5374' : '#87E060';   // Colors
+        var colorStop =  drunk ? '#DA0B0B' :'#87E060';    // just experiment with them
+        var strokeColor = drunk ? '#87E060' :'#CF5374';   // to see which ones work best for you
         var opts =
             {
-              lines: 100, // The number of lines to draw
-              angle: 0, // The length of each line
-              lineWidth: 0.38, // The line thickness
-              //pointer:
-              //  {
-              //  length: 1, // The radius of the inner circle
-              //  strokeWidth: 0.086, // The rotation offset
-              //  color:
-              //      '#000000' // Fill color
-              //  },
-              limitMax: 'true',   // If true, the pointer will not go past the end of the gauge
-              @if (Model.Drunk)
-              {
-                  colorStart: '#CF5374',   // Colors
-                  colorStop: '#DA0B0B',    // just experiment with them
-                  strokeColor: '#87E060',   // to see which ones work best for you
-                }
-              else
-              {
-                  colorStart: '#87E060',   // Colors
-                  colorStop: '#87E060',    // just experiment with them
-                  strokeColor: '#CF5374',   // to see which ones work best for you
-              }
-              generateGradient:
-              true
+                lines: 100, // The number of lines to draw
+                angle: 0, // The length of each line
+                lineWidth: 0.38, // The line thickness
+                //pointer:
+                //  {
+                //  length: 1, // The radius of the inner circle
+                //  strokeWidth: 0.086, // The rotation offset
+                //  color:
+                //      '#000000' // Fill color
+                //  },
+                limitMax: 'true',   // If true, the pointer will not go past the end of the gauge
+                colorStart: '#CF5374',   // Colors
+                colorStop: '#DA0B0B',    // just experiment with them
+                strokeColor: '#87E060',   // to see which ones work best for you
+                @*//colorStart: colorStart,
+                //colorStop: colorStop,
+                //strokeColor: strokeColor,*@
+                generateGradient: true
             };
         var target = document.getElementById('gaugecanvas'); // your canvas element
         var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
