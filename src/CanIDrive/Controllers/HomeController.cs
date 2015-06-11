@@ -33,7 +33,9 @@ namespace CanIDrive.Controllers
         private ResultModel GetResult() // simulate making an assessment :-)
         {
             bool drunk = new Random().Next(2) == 0;
+            drunk = true;
             double confidence = (new Random().NextDouble());
+            confidence = 0.54*100;
 
             return new ResultModel
             {
