@@ -3,6 +3,7 @@
 
 ## stuff we learned
 * The speech recognition is pretty good. Is it learning? Hard to get it not to recognise the phrase
+* Currently there isn't a JavaScript SDK (we're currently piggy-backing on the demo site so should put our own proxy in place!)
 
 ## Tech used
 * ASP.NET 5 (Beta4)
