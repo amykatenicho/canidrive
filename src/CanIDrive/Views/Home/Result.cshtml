@@ -14,7 +14,7 @@
     {
         <h3>Well done - you seem sober!!</h3>
     }
-    <p>Confidence level: @((Model.Confidence*100.0).ToString("0.00"))%</p>
+    <p>Confidence level: @((Model.Confidence * 100.0).ToString("0.00"))%</p>
 </div>
 @section scripts
 {
@@ -33,15 +33,18 @@
                 //      '#000000' // Fill color
                 //  },
                 limitMax: 'true',   // If true, the pointer will not go past the end of the gauge
-                colorStart: '#bfccff',   // Colors
-                colorStop: '#bfccff',    // just experiment with them
-                strokeColor: '#bfccff',   // to see which ones work best for you
+                colorStart: '#CF5374',   // Colors
+                colorStop: '#87E060',    // just experiment with them
+                strokeColor: '#DA0B0B',   // to see which ones work best for you
                 generateGradient: true
             };
         var target = document.getElementById('gaugecanvas'); // your canvas element
         var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
         gauge.maxValue = 100; // set max gauge value
         gauge.animationSpeed = 66; // set animation speed (32 is default value)
-        gauge.set(@Model.Confidence*100); // set actual value
+        @{
+            var gaugeValue = (Model.Drunk ? (1 - Model.Confidence) : Model.Confidence) * 100;
+        }
+        gauge.set(@gaugeValue); // set actual value
     </script>
 }
