@@ -54,7 +54,11 @@ namespace CanIDrive.Controllers
 
             var serializer = JsonSerializer.Create();
             var luisResponse = serializer.Deserialize<LuisResponse>(new JsonTextReader(new StringReader(responseText)));
-            var intent = luisResponse.intents.OrderByDescending(i=>i.score).First();
+            var intent = luisResponse.intents.OrderByDescending(i=>i.score).FirstOrDefault();
+            if (intent == null)
+            {
+                return View("NotRecognised");
+            }
 
             var resultModel = new ResultModel
             {
