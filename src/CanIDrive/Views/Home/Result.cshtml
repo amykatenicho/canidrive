@@ -14,7 +14,7 @@
     {
         <h3>Well done - you seem sober!!</h3>
     }
-    <p>Confidence level: @Model.Confidence</p>
+    <p>Confidence level: @((Model.Confidence*100.0).ToString("0.00"))%</p>
 </div>
 @section scripts
 {
