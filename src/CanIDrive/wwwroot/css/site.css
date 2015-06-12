@@ -50,12 +50,12 @@ textarea {
     font-weight:bold;
     font-size:large;
     margin-top:1em;
+    margin-bottom:1em;
 }
 .contributors{
     margin-top:1em;
-    margin-bottom:1em;
 }
 .prompt-text{
     margin-left:3em;
-    margin-bottom:1em;
+    line-height:1;
 }
