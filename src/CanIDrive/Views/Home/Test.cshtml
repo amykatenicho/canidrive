@@ -9,19 +9,22 @@
     <script src="./JS/SpeechToText/recorder.js" type="text/javascript"></script>
     <script src="./JS/SpeechToText/main.js" type="text/javascript"></script>
     <script src="./JS/SpeechToText/ws.js" type="text/javascript"></script>
-    <script src= "./JS/SpeechToText/index.js" type="text/javascript"></script>
-    <div>Click start and then say:</div>
-    <div>Peter Piper picked a peck of pickled peppers<br/>
-A peck of pickled peppers Peter Piper picked<br />
-If Peter Piper picked a peck of pickled peppers<br />
-Where's the peck of pickled peppers Peter Piper picked?</div>
+    <script src="./JS/SpeechToText/index.js" type="text/javascript"></script>
+    <h3>Click start and then say:</h3>
+    <div class="prompt-text">
+        Peter Piper picked a peck of pickled peppers<br />
+        A peck of pickled peppers Peter Piper picked<br />
+        If Peter Piper picked a peck of pickled peppers<br />
+        Where's the peck of pickled peppers Peter Piper picked?
+    </div>
     <button id="micOn" onclick='startRecording()'>start</button>
     <button id="micOff" onclick='stopRecording()' style='display:none;'>stop</button>
+    <div id="processing" style="display:none;">Processing...</div>
     <div class="textarea" id="messages"></div>
 </div>
 <div style='display:none;'>
-	<form asp-controller="Home" asp-action="Test" id="SpokenTextForm" method="post">
+    <form asp-controller="Home" asp-action="Test" id="SpokenTextForm" method="post">
         <textarea id="SpokenText" asp-for="SpokenText" cols="10" rows="4"></textarea>
-		<input type="submit" value="Go" />
-	</form>
+        <input type="submit" value="Go" />
+    </form>
 </div>
