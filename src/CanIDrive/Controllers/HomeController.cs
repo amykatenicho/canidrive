@@ -9,18 +9,19 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using System.IO;
 using Microsoft.Framework.ConfigurationModel;
+using CanIDrive.Services;
 
 namespace CanIDrive.Controllers
 {
     public class HomeController : Controller
     {
         private readonly TelemetryClient _telemetryClient;
-        private readonly IConfiguration _configuration;
+        private readonly LuisService _luisService;
 
-        public HomeController(TelemetryClient telemetryClient, IConfiguration configuration)
+        public HomeController(TelemetryClient telemetryClient, LuisService luisService)
         {
             _telemetryClient = telemetryClient;
-            _configuration = configuration;
+            _luisService = luisService;
         }
         public IActionResult Index()
         {
@@ -41,29 +42,16 @@ namespace CanIDrive.Controllers
         {
             // TODO - error handling :-)
 
-            // TODO - make application id and subscription key config details
-            string applicationId = _configuration.Get("Luis:AppId");
-            string subscriptionKey = _configuration.Get("Luis:SubscriptionKey");
-            string uriFormat = "https://api.projectoxford.ai/luis/v1/application?id={0}&subscription-key={1}&q={2}";
-            string uri = string.Format(uriFormat, applicationId, subscriptionKey, model.SpokenText); // TODO - uri encode!
-
-            var client = new HttpClient();
-
-            var response = await client.GetAsync(uri);
-            string responseText = await response.Content.ReadAsStringAsync();
-
-            var serializer = JsonSerializer.Create();
-            var luisResponse = serializer.Deserialize<LuisResponse>(new JsonTextReader(new StringReader(responseText)));
-            var intent = luisResponse.intents.OrderByDescending(i=>i.score).FirstOrDefault();
-            if (intent == null)
+            var luisResult = await _luisService.TestSobrietyAsync(model.SpokenText);
+            if (luisResult == null)
             {
                 return View("NotRecognised");
             }
 
             var resultModel = new ResultModel
             {
-                Drunk = intent.intent == "drunkspeech",
-                Confidence = intent.score
+                Drunk = luisResult.Drunk,
+                Confidence = luisResult.Confidence
             };
 
             string resultEventName = resultModel.Drunk ? "Result-drunk" : "Result-sober";
@@ -77,24 +65,6 @@ namespace CanIDrive.Controllers
         public IActionResult Error()
         {
             return View("~/Views/Shared/Error.cshtml");
-        }
-
-
-        // TODO move this and the associated api calls to a service
-        private class LuisResponse
-        {
-            public string query { get; set; }
-            public Intent[] intents { get; set; }
-            public Entity[] entities { get; set; }
-        }
-        private class Intent
-        {
-            public string intent { get; set; }
-            public double score { get; set; }
-        }
-        private class Entity
-        {
-
         }
     }
 }

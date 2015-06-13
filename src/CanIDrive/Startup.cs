@@ -21,6 +21,7 @@ using Microsoft.Framework.Logging;
 using Microsoft.Framework.Logging.Console;
 using Microsoft.Framework.Runtime;
 using CanIDrive.Models;
+using CanIDrive.Services;
 
 namespace CanIDrive
 {
@@ -53,6 +54,7 @@ namespace CanIDrive
             services.Configure<AppSettings>(Configuration.GetSubKey("AppSettings"));
 
             services.AddInstance<IConfiguration>(Configuration);
+            services.AddTransient<LuisService>();
 
             services.AddApplicationInsightsTelemetry(Configuration);
 
